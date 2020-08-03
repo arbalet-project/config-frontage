@@ -1,13 +1,21 @@
 #button-menu {
   display: flex;
+
   button:first-child {
     margin-right: 1rem;
   }
 }
 
 nav {
+  flex: 5;
+  display: flex;
+  justify-content: space-between;
+
   a {
     text-decoration: none;
     color: inherit;
   }
+
+  padding-left : 1rem;
+  padding-right: 10rem;
 }

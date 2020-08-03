@@ -1,11 +1,26 @@
 <mat-toolbar>
   <div id="button-menu">
-    <button mat-raised-button color="warn">
-      Nouvelle configuration
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      aria-label="Example icon-button with a menu"
+    >
+      <mat-icon>more_vert</mat-icon>
     </button>
-    <button mat-raised-button color="accent">
-      Enregistrer la configuration
-    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>save</mat-icon>
+        <span>Enregistrer la configuration</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>add</mat-icon>
+        <span>Nouvelle configuration</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>import_export</mat-icon>
+        <span>Importer configuration</span>
+      </button>
+    </mat-menu>
   </div>
   <nav>
     <a routerLink="artnet">Artnet</a>

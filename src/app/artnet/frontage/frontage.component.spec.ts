@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ArtnetComponent } from './artnet.component';
+import { FrontageComponent } from './frontage.component';
 
-describe('ArtnetComponent', () => {
-  let component: ArtnetComponent;
-  let fixture: ComponentFixture<ArtnetComponent>;
+describe('FrontageComponent', () => {
+  let component: FrontageComponent;
+  let fixture: ComponentFixture<FrontageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArtnetComponent ]
+      declarations: [ FrontageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ArtnetComponent);
+    fixture = TestBed.createComponent(FrontageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
