@@ -5,5 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class FrontageService {
 
+  public width: number;
+  public height: number;
+
   constructor() { }
 }
