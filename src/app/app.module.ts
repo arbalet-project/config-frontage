@@ -9,10 +9,10 @@ import { FappComponent } from './fapp/fapp.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SettingsComponent } from './settings/settings.component';
 
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
+import { MaterialModule } from './material/material.module';
+import { LayoutModule } from '@angular/cdk/layout';
+
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -20,16 +20,15 @@ import { MatIconModule } from '@angular/material/icon';
     AppComponent,
     FappComponent,
     CalendarComponent,
-    SettingsComponent
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatIconModule
+    AppRoutingModule,
+    MaterialModule,
+    LayoutModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,7 +6,7 @@ import { InitGuard } from '../guard/init.guard';
 
 const routes: Routes = [
   { path: '', canActivate: [InitGuard] },
-  { path: 'creation', component: CreationFormComponent},
+  { path: 'creation', component: CreationFormComponent },
   { path: 'frontage', component: FrontageComponent }];
 
 @NgModule({

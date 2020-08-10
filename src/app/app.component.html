@@ -1,34 +1,44 @@
-<mat-toolbar>
-  <div id="button-menu">
-    <button
-      mat-icon-button
-      [matMenuTriggerFor]="menu"
-      aria-label="Example icon-button with a menu"
-    >
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-icon>save</mat-icon>
-        <span>Enregistrer la configuration</span>
-      </button>
-      <button mat-menu-item>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over">
+    <div fxLayout="column">
+      <button mat-button>
         <mat-icon>add</mat-icon>
         <span>Nouvelle configuration</span>
       </button>
-      <button mat-menu-item>
+      <button mat-button>
+        <mat-icon>save</mat-icon>
+        <span>Enregistrer la configuration</span>
+      </button>
+      <button mat-button>
         <mat-icon>import_export</mat-icon>
         <span>Importer configuration</span>
       </button>
-    </mat-menu>
-  </div>
-  <nav>
-    <a routerLink="artnet">Artnet</a>
-    <a routerLink="fapp">Frontage App</a>
-    <a routerLink="calendar">Calendrier</a>
-    <a routerLink="settings">Paramètres</a>
-  </nav>
-</mat-toolbar>
-<main>
-  <router-outlet></router-outlet>
-</main>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button
+      mat-icon-button
+      (click)="sidenav.toggle()"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+      <nav fxLayout="row" fxLayoutAlign="space-around">
+        <a routerLink="artnet">Artnet</a>
+        <a routerLink="fapp">Frontage App</a>
+        <a routerLink="calendar">Calendrier</a>
+        <a routerLink="settings">Paramètres</a>
+      </nav>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- <mat-grid-list cols="1" rowHeight="2:1">
+  <mat-grid-tile-header>
+    <app-toolbar></app-toolbar>
+  </mat-grid-tile-header>
+  <mat-grid-tile>
+    <router-outlet></router-outlet>
+  </mat-grid-tile>
+</mat-grid-list> -->

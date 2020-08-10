@@ -1,1 +1,20 @@
-<p>creation-form works!</p>
+<!-- <mat-grid-list cols="1" rowHeight="2:1">
+  <mat-grid-tile-footer>
+    Test
+  </mat-grid-tile-footer>
+  <mat-grid-tile> -->
+<form [formGroup]="creationForm" (ngSubmit)="create()">
+  <mat-form-field appearance="fill">
+    <mat-label>Width</mat-label>
+    <input matInput type="number" placeholder="Ex. 12" [formControl]="width" />
+    <!-- <mat-error *ngIf="creationForm.errors.invalid">Min size: 10px</mat-error> -->
+  </mat-form-field>
+  <br />
+  <mat-form-field appearance="fill">
+    <mat-label>Height</mat-label>
+    <input matInput type="number" placeholder="Ex. 12" [formControl]="height" />
+    <!-- <mat-error *ngIf="creationForm.errors.invalid">Min size: 10px</mat-error> -->
+  </mat-form-field>
+</form>
+<!-- </mat-grid-tile>
+</mat-grid-list> -->

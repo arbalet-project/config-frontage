@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'fapp', component: FappComponent },
   { path: 'calendar', component: CalendarComponent },
   { path: 'settings', component: SettingsComponent },
-  { path: 'artnet', loadChildren: () => import('./artnet/artnet.module').then(m => m.ArtnetModule) }
+  { path: 'artnet', loadChildren: () => import('./artnet/artnet.module').then(m => m.ArtnetModule) },
 ];
 
 @NgModule({
