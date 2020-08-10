@@ -9,6 +9,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatChipsModule } from '@angular/material/chips';
 
 const materialComponents = [
   MatFormFieldModule,
@@ -19,7 +21,9 @@ const materialComponents = [
   MatToolbarModule,
   MatSidenavModule,
   MatGridListModule,
-  MatListModule
+  MatListModule,
+  MatButtonToggleModule,
+  MatChipsModule
 ];
 
 

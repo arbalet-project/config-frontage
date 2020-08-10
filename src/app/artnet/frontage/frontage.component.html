@@ -1,2 +1,28 @@
-<canvas #canvas >
-</canvas>
+<mat-toolbar color="primary">
+  <button mat-mini-fab color="accent" (click)="addUniverse()">
+    <mat-icon>
+      add
+    </mat-icon>
+  </button>
+
+  <mat-button-toggle-group #tools="matButtonToggleGroup">
+    <mat-button-toggle value="select">
+      <mat-icon> select_all </mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="turn_off">
+      <mat-icon>block</mat-icon>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</mat-toolbar>
+<canvas #canvas (click)="updateState($event)"> </canvas>
+<mat-chip-list
+  cdkDropList
+  cdkDropListOrientation="horizontal"> <!--
+    (cdkDropListDropped)="drop($event)"-->
+    <mat-chip
+    class="example-box"
+    cdkDrag
+    *ngFor="let u of universe">
+    {{ u }}
+  </mat-chip>
+  </mat-chip-list>
