@@ -11,20 +11,20 @@ import { AppService } from 'src/app/core/app.service';
 export class InitComponent {
   public creationForm: FormGroup;
 
-  public width = new FormControl(19, Validators.min(1));
-  public height = new FormControl(4, Validators.min(1));
-
   constructor(public fb: FormBuilder, public frontage: FrontageService, public router: Router, public app: AppService) {
     this.creationForm = fb.group({
-      width: this.width,
-      height: this.height
+      width: new FormControl(19, Validators.min(1)),
+      height: new FormControl(4, Validators.min(1))
     });
   }
 
-  public create() {
+  public create(): void {
     this.app.initiliazed = true;
-    this.frontage.width = this.creationForm.value.width;
-    this.frontage.height = this.creationForm.value.height;
+    this.frontage.dimension = {
+      width: this.creationForm.value.width,
+      height: this.creationForm.value.height
+    };
+    this.frontage.fillCells();
     this.router.navigateByUrl('config');
   }
 

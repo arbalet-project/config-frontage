@@ -16,13 +16,13 @@ export class UniverseFormComponent {
       address: new FormControl(0),
       step: new FormControl(0), // Validators to be sure that a number ?
       mode: new FormControl('rgb') // Validators between two values ?
-    })
+    });
 
     this.colorMode = this.frontage.getAllMode();
   }
 
 
-  stop() {
+  stop(): void {
     this.dialogRef.close();
   }
 }

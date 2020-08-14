@@ -15,7 +15,7 @@ export class InitGuard implements CanActivate {
 
     if (!this.app.initiliazed && state.url !== '/') {
       this.router.navigateByUrl('');
-    } else if (this.app.initiliazed && state.url == '/') {
+    } else if (this.app.initiliazed && state.url === '/') {
       this.router.navigateByUrl('/artnet');
     }
 

@@ -10,8 +10,8 @@ export interface Universe {
   color: Mode;
 }
 
-export interface formResponse {
-  address: number,
-  step: number,
-  mode: string
+export interface FormResponse {
+  address: number;
+  step: number;
+  mode: string;
 }

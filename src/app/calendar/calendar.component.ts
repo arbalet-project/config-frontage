@@ -16,7 +16,7 @@ export class CalendarComponent {
     });
   }
 
-  updateSun() {
+  updateSun(): void {
     console.log(this.geographyForm.value);
     this.timeApi.getAllTimes(this.geographyForm.value.latitude, this.geographyForm.value.longitude, 5);
   }
