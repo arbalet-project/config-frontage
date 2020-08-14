@@ -27,16 +27,16 @@ export class ConfigComponent {
     });
   }
 
-  updateCell(event) {
+  updateCell(event): void {
     switch (this.tools.value) {
-      case "select":
-        console.log("todo");
+      case 'select':
+        console.log('todo');
         break;
-      case "turn_off":
+      case 'turn_off':
         console.log(event);
         break;
       default:
-        console.error("Tools not implemented");
+        console.error('Tools not implemented');
     }
   }
 }

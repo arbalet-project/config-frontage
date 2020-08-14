@@ -20,33 +20,33 @@ export class FrontageCanvasComponent implements OnInit {
   };
   private gutter = 50;
 
-  @Output('clickCell') clickCell = new EventEmitter();
+  @Output() clickCell = new EventEmitter();
 
   constructor(public frontage: FrontageService) { }
 
   ngOnInit(): void {
     this.ctx = this.canvas.nativeElement.getContext('2d');
-    this.updateDimension();
+    this.updateCanvasDimension();
 
     this.draw();
   }
 
-  private updateDimension() {
+  private updateCanvasDimension(): void {
     this.ctx.canvas.width = window.innerWidth;
     this.ctx.canvas.height = (this.areaCell.height * this.frontage.dimension.height) + this.gutter;
 
     this.areaFrontage = {
       width: this.ctx.canvas.width - (2 * this.gutter),
       height: this.ctx.canvas.height - this.gutter
-    }
+    };
     this.areaCell.width = this.areaFrontage.width / this.frontage.dimension.width;
   }
 
-  draw() {
+  draw(): void {
     this.drawFrontage();
   }
 
-  drawFrontage() {
+  drawFrontage(): void {
     this.ctx.translate(50, 50);
     this.ctx.strokeStyle = 'white';
 
@@ -71,13 +71,13 @@ export class FrontageCanvasComponent implements OnInit {
     this.ctx.setTransform(1, 0, 0, 1, 0, 0);
   }
 
-  updateState(event) {
+  updateState(event): void {
     const rect = this.canvas.nativeElement.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    const c = Math.floor((x - this.gutter) / this.areaCell.width)
-    const l = Math.floor((y - this.gutter) / this.areaCell.height)
-    this.clickCell.emit({ column : c, line: l});
+    const c = Math.floor((x - this.gutter) / this.areaCell.width);
+    const l = Math.floor((y - this.gutter) / this.areaCell.height);
+    this.clickCell.emit({ column: c, line: l });
   }
 }
