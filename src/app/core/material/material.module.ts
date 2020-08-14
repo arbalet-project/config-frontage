@@ -13,6 +13,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
 
 const materialComponents = [
   MatFormFieldModule,
@@ -27,7 +29,9 @@ const materialComponents = [
   MatButtonToggleModule,
   MatChipsModule,
   MatDialogModule,
-  MatSelectModule
+  MatSelectModule,
+  MatCheckboxModule,
+  MatCardModule
 ];
 
 

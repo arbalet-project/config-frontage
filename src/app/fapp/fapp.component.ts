@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../core/app.service';
 
 @Component({
   selector: 'app-fapp',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FappComponent implements OnInit {
 
-  constructor() { }
+  constructor(public app: AppService) { }
 
   ngOnInit(): void {
   }
-
+  update(name : string) {
+    this.app.updateStatusFApp(name);
+  }
 }

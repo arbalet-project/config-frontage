@@ -1,1 +1,16 @@
-<p>fapp works!</p>
+<mat-grid-list cols="1" rowHeight="2:1">
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title> Frontage Applications (Listing) </mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="column">
+        <div *ngFor="let f of app.frontageApp | keyvalue">
+          <mat-checkbox [checked]="f.value" (change)="update(f.key)">{{
+            f.key
+          }}</mat-checkbox>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
