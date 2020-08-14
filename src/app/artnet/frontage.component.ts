@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FrontageService } from 'src/app/core/frontage/frontage.service';
 import { MatButtonToggleGroup } from '@angular/material/button-toggle';
-import { Universe } from 'src/app/core/frontage/models/universe';
+import { Universe, formResponse } from 'src/app/core/frontage/models/universe';
 import { MatDialog } from '@angular/material/dialog';
 import { UniverseFormComponent } from './universe-form/universe-form.component';
 
@@ -72,8 +72,11 @@ export class FrontageComponent implements OnInit {
       width: '350px'
     });
 
-    dRef.afterClosed().subscribe(result => {
-      console.log(result);
+    dRef.afterClosed().subscribe((result: formResponse) => {
+      if (result == undefined) {
+        return;
+      }
+      this.frontage.addUniverse(result)
     });
   }
 }
