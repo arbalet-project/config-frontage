@@ -14,9 +14,10 @@ import { LayoutModule } from '@angular/cdk/layout';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { InitComponent } from './init/init.component';
-import { FrontageComponent } from './artnet/frontage.component'
+import { FrontageComponent } from './artnet/frontage.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UniverseFormComponent } from './artnet/universe-form/universe-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { UniverseFormComponent } from './artnet/universe-form/universe-form.comp
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,

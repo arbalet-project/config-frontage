@@ -7,7 +7,7 @@ export class AppService {
   /**
    * Boolean to know if the creation form is filled a first time
    */
-  public initiliazed: boolean = false;
+  public initiliazed = false;
 
   constructor() { }
 }
