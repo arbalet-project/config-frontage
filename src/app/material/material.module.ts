@@ -11,6 +11,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const materialComponents = [
   MatFormFieldModule,
@@ -23,7 +24,8 @@ const materialComponents = [
   MatGridListModule,
   MatListModule,
   MatButtonToggleModule,
-  MatChipsModule
+  MatChipsModule,
+  MatDialogModule
 ];
 
 

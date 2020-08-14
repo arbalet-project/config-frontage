@@ -17,12 +17,11 @@
 <canvas #canvas (click)="updateState($event)"> </canvas>
 <mat-chip-list
   cdkDropList
-  cdkDropListOrientation="horizontal"> <!--
-    (cdkDropListDropped)="drop($event)"-->
+  cdkDropListOrientation="horizontal">
     <mat-chip
     class="example-box"
     cdkDrag
     *ngFor="let u of universe">
-    {{ u }}
+    {{ u.id }}
   </mat-chip>
   </mat-chip-list>

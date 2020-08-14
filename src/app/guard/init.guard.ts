@@ -12,12 +12,16 @@ export class InitGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.app.initiliazed) {
-      this.router.navigateByUrl('/artnet/frontage');
-      return true;
-    } else {
-      this.router.navigateByUrl('/artnet/creation');
-      return true;
+
+    console.log(state.url)
+    if(!this.app.initiliazed && state.url !== '/') {
+      this.router.navigateByUrl('');
+      console.log("test");
+    } else if(this.app.initiliazed && state.url == '/') {
+      this.router.navigateByUrl('/artnet');
+      console.log("test 2");
     }
+
+    return true;
   }
 }

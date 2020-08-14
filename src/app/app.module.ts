@@ -13,7 +13,10 @@ import { MaterialModule } from './material/material.module';
 import { LayoutModule } from '@angular/cdk/layout';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { InitComponent } from './init/init.component';
+import { FrontageComponent } from './artnet/frontage.component'
+import { ReactiveFormsModule } from '@angular/forms';
+import { UniverseFormComponent } from './artnet/universe-form/universe-form.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +24,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FappComponent,
     CalendarComponent,
     SettingsComponent,
+    FrontageComponent,
+    UniverseFormComponent,
+    InitComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,

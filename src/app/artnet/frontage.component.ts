@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FrontageService } from 'src/app/core/frontage/frontage.service';
 import { MatButtonToggleGroup } from '@angular/material/button-toggle';
+import { Universe } from 'src/app/core/frontage/models/universe';
+import { MatDialog } from '@angular/material/dialog';
+import { UniverseFormComponent } from './universe-form/universe-form.component';
 
 @Component({
   selector: 'app-frontage',
@@ -16,17 +19,15 @@ export class FrontageComponent implements OnInit {
     height: 2000
   }
 
-  public universe: Array<string> = ["Univers 1"];
+  public universe: Array<Universe> = [];
   private ctx: CanvasRenderingContext2D;
 
-  constructor(public frontage: FrontageService) { }
+  constructor(public frontage: FrontageService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.ctx = this.canvas.nativeElement.getContext('2d');
     this.init();
   }
-
-
 
   public init() {
     this.dimensions = {
@@ -67,7 +68,12 @@ export class FrontageComponent implements OnInit {
   }
 
   addUniverse() {
-    this.universe.push("Univers " + (this.universe.length + 1));
-    console.log("test");
+    const dRef = this.dialog.open(UniverseFormComponent, {
+      width: '350px'
+    })
+
+    dRef.afterClosed().subscribe(result => {
+      console.log(result);
+    })
   }
 }
