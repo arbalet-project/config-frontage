@@ -12,9 +12,19 @@ export class FrontageService {
   constructor() { }
 
   public fillCells(): void {
-    this.frontage = Array.from(Array(this.dimension.height), () => new Array(this.dimension.width).fill({
-      disabled: false
-    }));
+    // this.frontage = Array.from(Array(this.dimension.height), () => new Array(this.dimension.width).fill({
+    //   disabled: false
+    // }));
+    this.frontage = new Array(this.dimension.height);
+    for (let i = 0; i < this.dimension.height; i++) {
+      this.frontage[i] = new Array(this.dimension.width);
+      for (let j = 0; j < this.dimension.width; j++) {
+        this.frontage[i][j] = { disabled: false };
+      }
+    }
+
+    console.log("finish");
+
   }
 
   public getAllMode(): Array<string> {
@@ -41,5 +51,10 @@ export class FrontageService {
     }
 
     this.universe.push(univ);
+  }
+
+  public turnOffCell(column: number, line: number) {
+    this.frontage[line][column].disabled = true;
+    console.log(this.frontage);
   }
 }

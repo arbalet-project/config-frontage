@@ -27,13 +27,13 @@ export class ConfigComponent {
     });
   }
 
-  updateCell(event): void {
+  updateCell(event: { column: number, line: number }): void {
     switch (this.tools.value) {
       case 'select':
         console.log('todo');
         break;
       case 'turn_off':
-        console.log(event);
+        this.frontage.turnOffCell(event.column, event.line);
         break;
       default:
         console.error('Tools not implemented');
