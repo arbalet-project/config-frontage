@@ -14,14 +14,9 @@
     </mat-button-toggle>
   </mat-button-toggle-group>
 </mat-toolbar>
-<canvas #canvas (click)="updateState($event)"> </canvas>
-<mat-chip-list
-  cdkDropList
-  cdkDropListOrientation="horizontal">
-    <mat-chip
-    class="example-box"
-    cdkDrag
-    *ngFor="let u of frontage.universe">
-    {{ "Universe " +  u.id }}
+<app-frontage-canvas (clickCell)="updateCell($event)"></app-frontage-canvas>
+<mat-chip-list cdkDropList cdkDropListOrientation="horizontal">
+  <mat-chip class="example-box" cdkDrag *ngFor="let u of frontage.universe">
+    {{ "Universe " + u.id }}
   </mat-chip>
-  </mat-chip-list>
+</mat-chip-list>

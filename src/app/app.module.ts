@@ -14,10 +14,11 @@ import { LayoutModule } from '@angular/cdk/layout';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { InitComponent } from './init/init.component';
-import { FrontageComponent } from './artnet/frontage.component';
+import { ConfigComponent } from './artnet/config.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UniverseFormComponent } from './artnet/universe-form/universe-form.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FrontageCanvasComponent } from './artnet/frontage-canvas/frontage-canvas.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +26,10 @@ import { HttpClientModule } from '@angular/common/http';
     FappComponent,
     CalendarComponent,
     SettingsComponent,
-    FrontageComponent,
+    ConfigComponent,
     UniverseFormComponent,
-    InitComponent
+    InitComponent,
+    FrontageCanvasComponent
   ],
   imports: [
     BrowserModule,
