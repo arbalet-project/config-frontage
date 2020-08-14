@@ -3,7 +3,7 @@ import { FrontageService } from 'src/app/core/frontage/frontage.service';
 import { Dimension } from 'src/app/core/frontage/models/frontage';
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { interval } from 'rxjs';
+import { interval, timer } from 'rxjs';
 
 @Component({
   selector: 'app-frontage-canvas',
@@ -28,8 +28,7 @@ export class FrontageCanvasComponent implements OnInit {
   ngOnInit(): void {
     this.ctx = this.canvas.nativeElement.getContext('2d');
     this.updateCanvasDimension();
-    interval(600).subscribe(() => {
-      console.log("update");
+    timer(0,60).subscribe(() => {
       this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
       this.draw();
     });
@@ -79,7 +78,7 @@ export class FrontageCanvasComponent implements OnInit {
   public drawDisabled() {
     for (let i = 0; i < this.frontage.dimension.height; i++)
       for (let j = 0; j < this.frontage.dimension.width; j++)
-        if (this.frontage.frontage[i][j].disabled) {
+        if (this.frontage.matrix[i][j].disabled) {
           this.ctx.fillStyle = "#8c071b";
           this.ctx.strokeStyle = 'none';
           this.ctx.fillRect(j * this.areaCell.width + this.gutter + 1, i * this.areaCell.height + this.gutter + 1, this.areaCell.width - 2, this.areaCell.height - 2);

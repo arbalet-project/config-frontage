@@ -7,24 +7,18 @@ import { Universe, Mode, FormResponse } from './models/universe';
 })
 export class FrontageService {
   public dimension: Dimension;
-  public frontage: Array<Array<Cell>>;
+  public matrix: Array<Array<Cell>>;
   public universe: Array<Universe> = [];
   constructor() { }
 
   public fillCells(): void {
-    // this.frontage = Array.from(Array(this.dimension.height), () => new Array(this.dimension.width).fill({
-    //   disabled: false
-    // }));
-    this.frontage = new Array(this.dimension.height);
+    this.matrix = new Array(this.dimension.height);
     for (let i = 0; i < this.dimension.height; i++) {
-      this.frontage[i] = new Array(this.dimension.width);
+      this.matrix[i] = new Array(this.dimension.width);
       for (let j = 0; j < this.dimension.width; j++) {
-        this.frontage[i][j] = { disabled: false };
+        this.matrix[i][j] = { disabled: false };
       }
     }
-
-    console.log("finish");
-
   }
 
   public getAllMode(): Array<string> {
@@ -54,7 +48,6 @@ export class FrontageService {
   }
 
   public turnOffCell(column: number, line: number) {
-    this.frontage[line][column].disabled = true;
-    console.log(this.frontage);
+    this.matrix[line][column].disabled = !this.matrix[line][column].disabled;
   }
 }
