@@ -12,6 +12,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 const materialComponents = [
   MatFormFieldModule,
@@ -25,7 +26,8 @@ const materialComponents = [
   MatListModule,
   MatButtonToggleModule,
   MatChipsModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSelectModule
 ];
 
 

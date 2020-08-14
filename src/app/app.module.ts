@@ -9,7 +9,7 @@ import { FappComponent } from './fapp/fapp.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SettingsComponent } from './settings/settings.component';
 
-import { MaterialModule } from './material/material.module';
+import { MaterialModule } from './core/material/material.module';
 import { LayoutModule } from '@angular/cdk/layout';
 
 import { FlexLayoutModule } from '@angular/flex-layout';

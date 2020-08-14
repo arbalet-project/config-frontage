@@ -1,8 +1,35 @@
 <h2 mat-dialog-title>Universe creation</h2>
 <div mat-dialog-content>
-  <!-- TODO -->
+  <form [formGroup]="universeForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Address</mat-label>
+      <input
+        matInput
+        type="number"
+        [formControl]="universeForm.controls.address"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Step</mat-label>
+      <input
+        matInput
+        type="number"
+        [formControl]="universeForm.controls.step"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Color Mode</mat-label>
+      <mat-select [formControl]="universeForm.controls.mode">
+        <mat-option *ngFor="let m of colorMode" [value]="m">
+          {{ m }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="stop()">Return</button>
-  <button mat-button mat-dialog-close="test" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="universeForm.value" cdkFocusInitial>
+    Ok
+  </button>
 </div>

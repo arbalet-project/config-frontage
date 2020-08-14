@@ -1,4 +1,4 @@
-enum Mode {
+export enum Mode {
   RGB,
   GRB
 }
