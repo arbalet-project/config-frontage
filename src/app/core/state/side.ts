@@ -1,9 +1,9 @@
-import { Cell, Universe } from "./models/frontage";
+import { Cell, Universe } from './models/frontage';
 
 export class Side {
-  public frontage: Array<Array<Cell>>
+  public frontage: Array<Array<Cell>>;
 
-  constructor(width: number, height: number, public name : string) {
+  constructor(width: number, height: number, public name: string) {
     this.frontage = new Array(height);
     const row = [];
     for (let i = 0; i < height; i++) {
@@ -14,7 +14,7 @@ export class Side {
     }
   }
 
-  public turnOffCell(column: number, line: number) {
+  public turnOffCell(column: number, line: number): void {
     this.frontage[line][column].disabled = !this.frontage[line][column].disabled;
   }
 }

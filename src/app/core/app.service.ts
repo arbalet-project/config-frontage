@@ -17,15 +17,15 @@ export class AppService {
     ['Tetris', true],
     ['Snake', true],
     ['Drawing', true]
-  ])
+  ]);
 
-  constructor() {}
+  constructor() { }
 
-  updateStatusFApp(name: string) {
+  updateStatusFApp(name: string): void {
     if (this.frontageApp.has(name)) {
       this.frontageApp.set(name, !this.frontageApp.get(name));
     } else {
-      console.error("The name of the frontage app is not known");
+      console.error('The name of the frontage app is not known');
     }
   }
 }

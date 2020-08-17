@@ -22,3 +22,9 @@ export interface Universe {
   gap: number;
   color: ColorMode;
 }
+
+export interface FormResponse {
+  address: number;
+  step: number;
+  mode: string;
+}

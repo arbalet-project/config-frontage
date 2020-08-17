@@ -22,7 +22,7 @@ export class TimeService {
       setTimeout(() => {
         this.getDay(longitude, latitude, date.toISOString().substring(0, 10));
        // console.log(result);
-      }, 500)
+      }, 500);
       // Add one day
       date.setDate(date.getDate() + 1);
     }

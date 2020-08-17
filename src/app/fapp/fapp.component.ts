@@ -12,7 +12,7 @@ export class FappComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  update(name : string) {
+  update(name: string): void {
     this.app.updateStatusFApp(name);
   }
 }

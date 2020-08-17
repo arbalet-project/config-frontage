@@ -1,12 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { FrontageService } from 'src/app/core/frontage/frontage.service';
 import { MatButtonToggleGroup } from '@angular/material/button-toggle';
-import { FormResponse } from 'src/app/core/frontage/models/universe';
 import { MatDialog } from '@angular/material/dialog';
 import { UniverseFormComponent } from './universe-form/universe-form.component';
 import { SideFormComponent } from './side-form/side-form.component';
 import { StateService } from '../core/state/state.service';
 import { Side } from '../core/state/side';
+import { FormResponse } from '../core/state/models/frontage';
 
 @Component({
   selector: 'app-config',
@@ -23,9 +22,7 @@ export class ConfigComponent {
     });
 
     dRef.afterClosed().subscribe((result: FormResponse) => {
-      if (result) {
-        this.state.addUniverse();// (result);
-      }
+      if (result) { this.state.addUniverse(result); }
     });
   }
 
@@ -34,15 +31,14 @@ export class ConfigComponent {
       width: '350px'
     });
 
-    dRef.afterClosed().subscribe((result: { name : string}) => {
-      if (result) {
-        console.log(result)
-        this.state.addSide(result.name)
-      }
+    dRef.afterClosed().subscribe((result: { name: string }) => {
+      if (result) { this.state.addSide(result.name); }
     });
   }
 
-  updateCell(event: { column: number, line: number, side : Side }): void {
+  updateCell(event: { column: number, line: number, side: Side }): void {
+    if (event.column < 0 || event.line < 0) { return; }
+
     switch (this.tools.value) {
       case 'select':
         console.log('todo');

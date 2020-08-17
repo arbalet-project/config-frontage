@@ -1,8 +1,9 @@
 import { Component, OnInit, ElementRef, ViewChild, Output, EventEmitter, Input } from '@angular/core';
-import { Dimension } from 'src/app/core/frontage/models/frontage';
+
 import { timer } from 'rxjs';
 import { Side } from 'src/app/core/state/side';
 import { StateService } from 'src/app/core/state/state.service';
+import { Dimension } from 'src/app/core/state/models/frontage';
 
 @Component({
   selector: 'app-frontage-canvas',
@@ -75,15 +76,21 @@ export class FrontageCanvasComponent implements OnInit {
     this.ctx.setTransform(1, 0, 0, 1, 0, 0);
   }
 
-  public drawDisabled() {
-    for (let i = 0; i < this.state.dimension.height; i++)
-      for (let j = 0; j < this.state.dimension.width; j++)
+  public drawDisabled(): void {
+    for (let i = 0; i < this.state.dimension.height; i++) {
+      for (let j = 0; j < this.state.dimension.width; j++) {
         if (this.side.frontage[i][j].disabled) {
-          this.ctx.fillStyle = "#8c071b";
+          this.ctx.fillStyle = '#8c071b';
           this.ctx.strokeStyle = 'none';
-          this.ctx.fillRect(j * this.areaCell.width + this.gutter + 1, i * this.areaCell.height + this.gutter + 1, this.areaCell.width - 2, this.areaCell.height - 2);
+          this.ctx.fillRect(
+            j * this.areaCell.width + this.gutter + 1,
+            i * this.areaCell.height + this.gutter + 1,
+            this.areaCell.width - 2,
+            this.areaCell.height - 2);
 
         }
+      }
+    }
   }
 
   updateState(event): void {
