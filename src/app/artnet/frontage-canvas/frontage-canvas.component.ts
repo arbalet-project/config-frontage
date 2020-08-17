@@ -1,13 +1,16 @@
-import { Component, OnInit, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
-import { FrontageService } from 'src/app/core/frontage/frontage.service';
+import { Component, OnInit, ElementRef, ViewChild, Output, EventEmitter, Input } from '@angular/core';
 import { Dimension } from 'src/app/core/frontage/models/frontage';
 import { timer } from 'rxjs';
+import { Side } from 'src/app/core/state/side';
+import { StateService } from 'src/app/core/state/state.service';
 
 @Component({
   selector: 'app-frontage-canvas',
   templateUrl: './frontage-canvas.component.html',
 })
 export class FrontageCanvasComponent implements OnInit {
+  @Input() side: Side;
+
   @ViewChild('canvas', { static: true }) canvas: ElementRef<HTMLCanvasElement>;
   private ctx: CanvasRenderingContext2D;
 
@@ -20,7 +23,7 @@ export class FrontageCanvasComponent implements OnInit {
 
   @Output() clickCell = new EventEmitter();
 
-  constructor(public frontage: FrontageService) { }
+  constructor(public state: StateService) { }
 
   ngOnInit(): void {
     this.ctx = this.canvas.nativeElement.getContext('2d');
@@ -33,13 +36,13 @@ export class FrontageCanvasComponent implements OnInit {
 
   private updateCanvasDimension(): void {
     this.ctx.canvas.width = window.innerWidth;
-    this.ctx.canvas.height = (this.areaCell.height * this.frontage.dimension.height) + this.gutter;
+    this.ctx.canvas.height = (this.areaCell.height * this.state.dimension.height) + this.gutter;
 
     this.areaFrontage = {
       width: this.ctx.canvas.width - (2 * this.gutter),
       height: this.ctx.canvas.height - this.gutter
     };
-    this.areaCell.width = this.areaFrontage.width / this.frontage.dimension.width;
+    this.areaCell.width = this.areaFrontage.width / this.state.dimension.width;
   }
 
   draw(): void {
@@ -54,7 +57,7 @@ export class FrontageCanvasComponent implements OnInit {
     this.ctx.strokeRect(0, 0, this.areaFrontage.width, this.areaFrontage.height);
 
     // Draw lines (columns)
-    for (let i = 1; i < this.frontage.dimension.width; i++) {
+    for (let i = 1; i < this.state.dimension.width; i++) {
       this.ctx.beginPath();
       this.ctx.moveTo(i * this.areaCell.width, 0);
       this.ctx.lineTo(i * this.areaCell.width, this.areaFrontage.height);
@@ -62,7 +65,7 @@ export class FrontageCanvasComponent implements OnInit {
     }
 
     // Draw lines (rows)
-    for (let j = 1; j < this.frontage.dimension.height; j++) {
+    for (let j = 1; j < this.state.dimension.height; j++) {
       this.ctx.beginPath();
       this.ctx.moveTo(0, this.areaCell.height * j);
       this.ctx.lineTo(this.areaFrontage.width, this.areaCell.height * j);
@@ -73,9 +76,9 @@ export class FrontageCanvasComponent implements OnInit {
   }
 
   public drawDisabled() {
-    for (let i = 0; i < this.frontage.dimension.height; i++)
-      for (let j = 0; j < this.frontage.dimension.width; j++)
-        if (this.frontage.matrix[i][j].disabled) {
+    for (let i = 0; i < this.state.dimension.height; i++)
+      for (let j = 0; j < this.state.dimension.width; j++)
+        if (this.side.frontage[i][j].disabled) {
           this.ctx.fillStyle = "#8c071b";
           this.ctx.strokeStyle = 'none';
           this.ctx.fillRect(j * this.areaCell.width + this.gutter + 1, i * this.areaCell.height + this.gutter + 1, this.areaCell.width - 2, this.areaCell.height - 2);
@@ -90,6 +93,6 @@ export class FrontageCanvasComponent implements OnInit {
 
     const c = Math.floor((x - this.gutter) / this.areaCell.width);
     const l = Math.floor((y - this.gutter) / this.areaCell.height);
-    this.clickCell.emit({ column: c, line: l });
+    this.clickCell.emit({ column: c, line: l, side: this.side });
   }
 }

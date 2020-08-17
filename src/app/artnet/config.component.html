@@ -6,7 +6,7 @@
     Add universe
   </button>
 
-  <button mat-raised-button (click)="addFrontage()">
+  <button mat-raised-button (click)="addSide()">
     <mat-icon>
       add
     </mat-icon>
@@ -24,17 +24,14 @@
 </mat-toolbar>
 
 <mat-tab-group>
-  <mat-tab label="First"> Content 1 </mat-tab>
-  <mat-tab label="Second"> Content 2 </mat-tab>
-  <mat-tab label="Third"> Content 3 </mat-tab>
+  <mat-tab *ngFor="let s of state.sides" [label]="s.name">
+    <app-frontage-canvas (clickCell)=updateCell($event) [side]="s"></app-frontage-canvas>
+  </mat-tab>
 </mat-tab-group>
 
 
-
-<app-frontage-canvas (clickCell)="updateCell($event)"></app-frontage-canvas>
-
-<mat-chip-list cdkDropList cdkDropListOrientation="horizontal">
-  <mat-chip class="example-box" cdkDrag *ngFor="let u of frontage.universe">
+<!-- <mat-chip-list cdkDropList cdkDropListOrientation="horizontal">
+  <mat-chip class="example-box" cdkDrag *ngFor="let u of state.universe">
     {{ "Universe " + u.id }}
   </mat-chip>
-</mat-chip-list>
+</mat-chip-list> -->

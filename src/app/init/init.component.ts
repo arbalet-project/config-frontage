@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FrontageService } from 'src/app/core/frontage/frontage.service';
+import { StateService } from 'src/app/core/state/state.service';
 import { Router } from '@angular/router';
 import { AppService } from 'src/app/core/app.service';
 
@@ -11,7 +11,7 @@ import { AppService } from 'src/app/core/app.service';
 export class InitComponent {
   public creationForm: FormGroup;
 
-  constructor(public fb: FormBuilder, public frontage: FrontageService, public router: Router, public app: AppService) {
+  constructor(public fb: FormBuilder, public state: StateService, public router: Router, public app: AppService) {
     this.creationForm = fb.group({
       width: new FormControl(19, Validators.min(1)),
       height: new FormControl(4, Validators.min(1))
@@ -20,11 +20,11 @@ export class InitComponent {
 
   public create(): void {
     this.app.initiliazed = true;
-    this.frontage.dimension = {
+    this.state.dimension = {
       width: this.creationForm.value.width,
       height: this.creationForm.value.height
     };
-    this.frontage.fillCells();
+    this.state.addSide("Main Side");
     this.router.navigateByUrl('config');
   }
 
