@@ -4,6 +4,7 @@ import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { FormResponse } from 'src/app/core/frontage/models/universe';
 import { MatDialog } from '@angular/material/dialog';
 import { UniverseFormComponent } from './universe-form/universe-form.component';
+import { SideFormComponent } from './side-form/side-form.component';
 
 @Component({
   selector: 'app-config',
@@ -24,6 +25,12 @@ export class ConfigComponent {
         return;
       }
       this.frontage.addUniverse(result);
+    });
+  }
+
+  addFrontage(): void {
+    const dRef = this.dialog.open(SideFormComponent, {
+      width: '350px'
     });
   }
 

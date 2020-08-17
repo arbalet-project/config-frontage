@@ -1,8 +1,16 @@
 <mat-toolbar color="primary">
-  <button mat-mini-fab color="accent" (click)="addUniverse()">
+  <button mat-raised-button color="accent" (click)="addUniverse()">
     <mat-icon>
       add
     </mat-icon>
+    Add universe
+  </button>
+
+  <button mat-raised-button (click)="addFrontage()">
+    <mat-icon>
+      add
+    </mat-icon>
+    Add side
   </button>
 
   <mat-button-toggle-group #tools="matButtonToggleGroup">
@@ -14,7 +22,17 @@
     </mat-button-toggle>
   </mat-button-toggle-group>
 </mat-toolbar>
+
+<mat-tab-group>
+  <mat-tab label="First"> Content 1 </mat-tab>
+  <mat-tab label="Second"> Content 2 </mat-tab>
+  <mat-tab label="Third"> Content 3 </mat-tab>
+</mat-tab-group>
+
+
+
 <app-frontage-canvas (clickCell)="updateCell($event)"></app-frontage-canvas>
+
 <mat-chip-list cdkDropList cdkDropListOrientation="horizontal">
   <mat-chip class="example-box" cdkDrag *ngFor="let u of frontage.universe">
     {{ "Universe " + u.id }}

@@ -15,6 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const materialComponents = [
   MatFormFieldModule,
@@ -31,7 +32,8 @@ const materialComponents = [
   MatDialogModule,
   MatSelectModule,
   MatCheckboxModule,
-  MatCardModule
+  MatCardModule,
+  MatTabsModule
 ];
 
 

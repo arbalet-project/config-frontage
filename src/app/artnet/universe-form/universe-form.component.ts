@@ -21,8 +21,4 @@ export class UniverseFormComponent {
     this.colorMode = this.frontage.getAllMode();
   }
 
-
-  stop(): void {
-    this.dialogRef.close();
-  }
 }

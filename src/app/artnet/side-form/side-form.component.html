@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Universe creation</h2>
+<div mat-dialog-content>
+  <form [formGroup]="frontageForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput [formControl]="frontageForm.controls.name" />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">Close</button>
+  <button mat-button [mat-dialog-close]="frontageForm.value" cdkFocusInitial>
+    Finish
+  </button>
+</div>

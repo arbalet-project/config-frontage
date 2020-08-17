@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UniverseFormComponent } from './artnet/universe-form/universe-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FrontageCanvasComponent } from './artnet/frontage-canvas/frontage-canvas.component';
+import { SideFormComponent } from './artnet/side-form/side-form.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FrontageCanvasComponent } from './artnet/frontage-canvas/frontage-canva
     ConfigComponent,
     UniverseFormComponent,
     InitComponent,
-    FrontageCanvasComponent
+    FrontageCanvasComponent,
+    SideFormComponent
   ],
   imports: [
     BrowserModule,

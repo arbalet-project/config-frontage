@@ -9,17 +9,17 @@ export class AppService {
    */
   public initiliazed = false;
 
-  public frontageApp = new Map<string, boolean>()
+  public frontageApp = new Map<string, boolean>([
+    ['Flags', true],
+    ['RandomFlashing', true],
+    ['SweepRand', true],
+    ['SweepAsync', true],
+    ['Tetris', true],
+    ['Snake', true],
+    ['Drawing', true]
+  ])
 
-  constructor() {
-    this.frontageApp.set('Flags', true);
-    this.frontageApp.set('RandomFlashing', true);
-    this.frontageApp.set('SweepRand', true);
-    this.frontageApp.set('SweepAsync', true);
-    this.frontageApp.set('Tetris', true);
-    this.frontageApp.set('Snake', true);
-    this.frontageApp.set('Drawing', true);
-  }
+  constructor() {}
 
   updateStatusFApp(name: string) {
     if (this.frontageApp.has(name)) {

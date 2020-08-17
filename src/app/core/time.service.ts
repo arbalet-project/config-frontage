@@ -19,7 +19,10 @@ export class TimeService {
     const date = new Date();
 
     while (date.getFullYear() - new Date().getFullYear() <= years) {
-      this.getDay(longitude, latitude, date.toISOString().substring(0, 10));
+      setTimeout(() => {
+        this.getDay(longitude, latitude, date.toISOString().substring(0, 10));
+       // console.log(result);
+      }, 500)
       // Add one day
       date.setDate(date.getDate() + 1);
     }

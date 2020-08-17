@@ -1,14 +1,11 @@
 import { Component, OnInit, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
 import { FrontageService } from 'src/app/core/frontage/frontage.service';
 import { Dimension } from 'src/app/core/frontage/models/frontage';
-import { toBase64String } from '@angular/compiler/src/output/source_map';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { interval, timer } from 'rxjs';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-frontage-canvas',
   templateUrl: './frontage-canvas.component.html',
-  styleUrls: ['./frontage-canvas.component.scss']
 })
 export class FrontageCanvasComponent implements OnInit {
   @ViewChild('canvas', { static: true }) canvas: ElementRef<HTMLCanvasElement>;
@@ -28,7 +25,7 @@ export class FrontageCanvasComponent implements OnInit {
   ngOnInit(): void {
     this.ctx = this.canvas.nativeElement.getContext('2d');
     this.updateCanvasDimension();
-    timer(0,60).subscribe(() => {
+    timer(0, 60).subscribe(() => {
       this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
       this.draw();
     });
