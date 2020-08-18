@@ -36,7 +36,7 @@ export class FrontageCanvasComponent implements OnInit {
   }
 
   private updateCanvasDimension(): void {
-    this.ctx.canvas.width = window.innerWidth;
+    this.ctx.canvas.width = window.innerWidth - 50;
     this.ctx.canvas.height = (this.areaCell.height * this.state.dimension.height) + this.gutter;
 
     this.areaFrontage = {
