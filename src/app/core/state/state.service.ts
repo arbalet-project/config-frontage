@@ -6,11 +6,30 @@ import { Side } from './side';
   providedIn: 'root'
 })
 export class StateService {
+  /**
+   * @description Dimension (number columns and rows) of all sides.
+   */
   public dimension: Dimension;
+
+  /**
+   * @description Represent the different side handle by the website.
+   */
   public sides: Array<Side> = [];
+  /**
+   * @description Array of all universe needs by the app.
+   */
   public universe: Array<Universe> = [];
 
-  constructor() { }
+  /**
+   * @description Public name of the frontage.
+   */
+  public name: string;
+  /**
+   * @description Private name of the frontage.
+   */
+  public id: string;
+
+  constructor() {}
 
   public addSide(name: string): void {
     this.sides.push(new Side(this.dimension.width, this.dimension.height, name));

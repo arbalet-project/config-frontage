@@ -1,1 +1,28 @@
-<p>settings works!</p>
+<mat-grid-list cols="1" rowHeight="2:1">
+  <mat-grid-tile>
+    <form [formGroup]="settingsForm" (ngSubmit)="update()">
+      <mat-form-field appearance="fill">
+        <mat-label>Identification (Private)</mat-label>
+        <input matInput [formControl]="settingsForm.controls.id" />
+        <!-- <mat-error *ngIf="creationForm.errors.invalid">Min size: 10px</mat-error> -->
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill">
+        <mat-label>Name (Public)</mat-label>
+        <input matInput [formControl]="settingsForm.controls.name" />
+        <!-- <mat-error *ngIf="creationForm.errors.invalid">Min size: 10px</mat-error> -->
+      </mat-form-field>
+      <br />
+      <div id="submit">
+        <button
+          mat-flat-button
+          color="accent"
+          type="submit"
+          [disabled]="!settingsForm.valid"
+        >
+          Update settings
+        </button>
+      </div>
+    </form>
+  </mat-grid-tile>
+</mat-grid-list>
