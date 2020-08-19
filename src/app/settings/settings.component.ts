@@ -14,11 +14,10 @@ export class SettingsComponent {
     this.settingsForm = this.fb.group({
       name: new FormControl(this.state.name),
       id: new FormControl(this.state.id)
-    })
+    });
   }
 
-  update() {
-    console.log("update");
+  update(): void {
     this.state.id = this.settingsForm.value.id;
     this.state.name = this.settingsForm.value.name;
   }

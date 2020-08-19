@@ -25,6 +25,7 @@ export class InitComponent {
       height: this.creationForm.value.height
     };
     this.state.addSide('Main Side');
+
     this.router.navigateByUrl('config');
   }
 

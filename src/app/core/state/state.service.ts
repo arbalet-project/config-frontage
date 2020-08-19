@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Dimension, ColorMode, Universe, FormResponse } from './models/frontage';
+import { Dimension } from './models/frontage';
 import { Side } from './side';
+import { Universe, ColorMode, FormResponse } from './models/universe';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class StateService {
    */
   public id: string;
 
-  constructor() {}
+  constructor() { }
 
   public addSide(name: string): void {
     this.sides.push(new Side(this.dimension.width, this.dimension.height, name));
@@ -40,12 +41,11 @@ export class StateService {
   }
 
   public addUniverse(response: FormResponse): void {
-    const univ: Universe = {
-      id: this.universe.length + 1,
-      address: response.address,
-      gap: response.step,
-      color: ColorMode.RGB
-    };
+    const univ = new Universe(
+      this.universe.length + 1,
+      response.address,
+      response.step
+    );
 
     switch (response.mode) {
       case 'rgb':
@@ -55,8 +55,9 @@ export class StateService {
         univ.color = ColorMode.GRB;
         break;
       default:
-        console.error('an error occured, wrong choice for the mode.');
+        console.error('an error occured, wrong choice for the color mode.');
     }
+    this.sides.forEach(side => univ.registerSide(side.uuid));
 
     this.universe.push(univ);
   }

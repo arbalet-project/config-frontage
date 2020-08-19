@@ -5,7 +5,8 @@ import { UniverseFormComponent } from './universe-form/universe-form.component';
 import { SideFormComponent } from './side-form/side-form.component';
 import { StateService } from '../core/state/state.service';
 import { Side } from '../core/state/side';
-import { FormResponse } from '../core/state/models/frontage';
+import { Direction } from '../core/state/models/frontage';
+import { FormResponse } from '../core/state/models/universe';
 
 @Component({
   selector: 'app-config',
@@ -13,6 +14,7 @@ import { FormResponse } from '../core/state/models/frontage';
 })
 export class ConfigComponent {
   @ViewChild('tools') tools: MatButtonToggleGroup;
+  public universeIdChoosed: number = 1;
 
   constructor(public state: StateService, public dialog: MatDialog) { }
 
@@ -40,8 +42,12 @@ export class ConfigComponent {
     if (event.column < 0 || event.line < 0) { return; }
 
     switch (this.tools.value) {
-      case 'select':
-        console.log('todo');
+      case 'select_right':
+        // TODO : Potential Bug here with the universeId (because not sure it's the same if we delete some id)
+        event.side.updateAddress(event.column, event.line, Direction.RIGHT, this.state.universe[this.universeIdChoosed - 1]);
+        break;
+      case 'select_left':
+        event.side.updateAddress(event.column, event.line, Direction.LEFT, this.state.universe[this.universeIdChoosed - 1]);
         break;
       case 'turn_off':
         event.side.turnOffCell(event.column, event.line);
@@ -49,5 +55,9 @@ export class ConfigComponent {
       default:
         console.error('Tools not implemented');
     }
+  }
+
+  changeUniverse(id: number) {
+    this.universeIdChoosed = id;
   }
 }

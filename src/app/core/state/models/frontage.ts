@@ -7,24 +7,7 @@ export interface Cell {
   disabled: boolean;
 }
 
-/**************************************
- *             Universe               *
- **************************************/
-
-export enum ColorMode {
-  RGB,
-  GRB
-}
-
-export interface Universe {
-  id: number;
-  address: number;
-  gap: number;
-  color: ColorMode;
-}
-
-export interface FormResponse {
-  address: number;
-  step: number;
-  mode: string;
+export enum Direction {
+  LEFT,
+  RIGHT
 }

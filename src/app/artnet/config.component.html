@@ -37,8 +37,8 @@
   </mat-tab>
 </mat-tab-group>
 
-<mat-chip-list cdkDropList cdkDropListOrientation="horizontal">
-  <mat-chip class="example-box" cdkDrag *ngFor="let u of state.universe">
+<mat-chip-list [selectable]="true">
+  <mat-chip class="example-box" *ngFor="let u of state.universe" [selectable]="true" (click)="changeUniverse(u)">
     {{ "Universe " + u.id }}
   </mat-chip>
 </mat-chip-list>
