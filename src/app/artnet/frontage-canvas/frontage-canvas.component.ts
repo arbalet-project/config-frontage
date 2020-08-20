@@ -49,6 +49,7 @@ export class FrontageCanvasComponent implements OnInit {
   draw(): void {
     this.drawFrontage();
     this.drawDisabled();
+    this.drawAddress();
   }
 
   drawFrontage(): void {
@@ -87,7 +88,22 @@ export class FrontageCanvasComponent implements OnInit {
             i * this.areaCell.height + this.gutter + 1,
             this.areaCell.width - 2,
             this.areaCell.height - 2);
+        }
+      }
+    }
+  }
 
+  public drawAddress() {
+    for (let i = 0; i < this.state.dimension.height; i++) {
+      for (let j = 0; j < this.state.dimension.width; j++) {
+        if (this.side.frontage[i][j].address >= 0) {
+          this.ctx.fillStyle = '#07ad2b';
+          this.ctx.strokeStyle = 'none';
+          this.ctx.fillRect(
+            j * this.areaCell.width + this.gutter + 1,
+            i * this.areaCell.height + this.gutter + 1,
+            this.areaCell.width - 2,
+            this.areaCell.height - 2);
         }
       }
     }

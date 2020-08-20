@@ -24,6 +24,8 @@ export class Side {
 
   public turnOffCell(column: number, line: number): void {
     this.frontage[line][column].disabled = !this.frontage[line][column].disabled;
+    this.frontage[line][column].universeId = -1;
+    this.frontage[line][column].address = -1;
   }
 
   public updateAddress(column: number, line: number, dir: Direction, universe: Universe): void {
@@ -32,14 +34,18 @@ export class Side {
     switch (dir) {
       case Direction.LEFT:
         for (let i = column; i >= 0; i--) {
-          this.frontage[line][i].address = universe.getNewAddress(this.uuid);
-          this.frontage[line][i].universeId = universe.id;
+          if (!this.frontage[line][i].disabled) {
+            this.frontage[line][i].address = universe.getNewAddress(this.uuid);
+            this.frontage[line][i].universeId = universe.id;
+          }
         }
         break;
       case Direction.RIGHT:
         for (let i = column; i < this.frontage[line].length; i++) {
-          this.frontage[line][i].address = universe.getNewAddress(this.uuid);
-          this.frontage[line][i].universeId = universe.id;
+          if (!this.frontage[line][i].disabled) {
+            this.frontage[line][i].address = universe.getNewAddress(this.uuid);
+            this.frontage[line][i].universeId = universe.id;
+          }
         }
         break;
       default:
