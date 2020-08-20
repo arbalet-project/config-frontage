@@ -11,7 +11,11 @@ export class Side {
     for (let i = 0; i < height; i++) {
       this.frontage[i] = new Array(width);
       for (let j = 0; j < width; j++) {
-        this.frontage[i][j] = { disabled: false };
+        this.frontage[i][j] = {
+          disabled: false,
+          universeId: -1,
+          address: -1
+        };
       }
     }
 
@@ -23,7 +27,23 @@ export class Side {
   }
 
   public updateAddress(column: number, line: number, dir: Direction, universe: Universe): void {
-    // TODO
-    console.log('TODO');
+    if (universe === undefined) { return; }
+
+    switch (dir) {
+      case Direction.LEFT:
+        for (let i = column; i >= 0; i--) {
+          this.frontage[line][i].address = universe.getNewAddress(this.uuid);
+          this.frontage[line][i].universeId = universe.id;
+        }
+        break;
+      case Direction.RIGHT:
+        for (let i = column; i < this.frontage[line].length; i++) {
+          this.frontage[line][i].address = universe.getNewAddress(this.uuid);
+          this.frontage[line][i].universeId = universe.id;
+        }
+        break;
+      default:
+        console.error("Wrong direction provided (or not implemented)");
+    }
   }
 }

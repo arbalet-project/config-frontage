@@ -14,10 +14,10 @@
   </button>
 
   <mat-button-toggle-group #tools="matButtonToggleGroup">
-    <mat-button-toggle value="select_left">
+    <mat-button-toggle value="select_left" [disabled]="universeIdChoosed < 0">
       <mat-icon> keyboard_arrow_left </mat-icon>
     </mat-button-toggle>
-    <mat-button-toggle value="select_right">
+    <mat-button-toggle value="select_right" [disabled]="universeIdChoosed < 0">
       <mat-icon> keyboard_arrow_right </mat-icon>
     </mat-button-toggle>
     <mat-button-toggle value="turn_off">
@@ -38,7 +38,12 @@
 </mat-tab-group>
 
 <mat-chip-list [selectable]="true">
-  <mat-chip class="example-box" *ngFor="let u of state.universe" [selectable]="true" (click)="changeUniverse(u)">
+  <mat-chip
+    *ngFor="let u of state.universe"
+    [selectable]="true"
+    (click)="changeUniverse(u.id)"
+    [selected]="u.id === universeIdChoosed"
+  >
     {{ "Universe " + u.id }}
   </mat-chip>
 </mat-chip-list>

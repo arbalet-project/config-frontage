@@ -14,7 +14,7 @@ import { FormResponse } from '../core/state/models/universe';
 })
 export class ConfigComponent {
   @ViewChild('tools') tools: MatButtonToggleGroup;
-  public universeIdChoosed: number = 1;
+  public universeIdChoosed: number = -1;
 
   constructor(public state: StateService, public dialog: MatDialog) { }
 
@@ -47,6 +47,7 @@ export class ConfigComponent {
         event.side.updateAddress(event.column, event.line, Direction.RIGHT, this.state.universe[this.universeIdChoosed - 1]);
         break;
       case 'select_left':
+        console.log(this.state.universe[this.universeIdChoosed - 1]);
         event.side.updateAddress(event.column, event.line, Direction.LEFT, this.state.universe[this.universeIdChoosed - 1]);
         break;
       case 'turn_off':
@@ -59,5 +60,6 @@ export class ConfigComponent {
 
   changeUniverse(id: number) {
     this.universeIdChoosed = id;
+    console.log(id);
   }
 }

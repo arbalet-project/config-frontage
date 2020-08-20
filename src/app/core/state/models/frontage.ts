@@ -5,6 +5,8 @@ export interface Dimension {
 
 export interface Cell {
   disabled: boolean;
+  address: number;
+  universeId: number;
 }
 
 export enum Direction {
