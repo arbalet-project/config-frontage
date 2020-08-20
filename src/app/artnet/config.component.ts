@@ -11,11 +11,12 @@ import { FormResponse } from '../core/state/models/universe';
 @Component({
   selector: 'app-config',
   templateUrl: './config.component.html',
+  styleUrls: ['./config.component.scss']
 })
 export class ConfigComponent {
   @ViewChild('tools') tools: MatButtonToggleGroup;
   public universeIdChoosed: number = -1;
-
+  public message = "You need to create an universe and choose one universe before to address some frontage. You can disable some frontage with the tools";
   constructor(public state: StateService, public dialog: MatDialog) { }
 
   addUniverse(): void {
