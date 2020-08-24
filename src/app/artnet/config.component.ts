@@ -7,6 +7,7 @@ import { StateService } from '../core/state/state.service';
 import { Side } from '../core/state/side';
 import { Direction } from '../core/state/models/frontage';
 import { FormResponse } from '../core/state/models/universe';
+import { Position } from 'src/app/core/state/models/frontage';
 
 @Component({
   selector: 'app-config',
@@ -39,20 +40,15 @@ export class ConfigComponent {
     });
   }
 
-  updateCell(event: { column: number, line: number, side: Side }): void {
-    if (event.column < 0 || event.line < 0) { return; }
-
+  updateCell(event: { start: Position, end: Position, side: Side }): void {
+    console.log(event);
     switch (this.tools.value) {
-      case 'select_right':
+      case 'select':
         // TODO : Potential Bug here with the universeId (because not sure it's the same if we delete some id)
-        event.side.updateAddress(event.column, event.line, Direction.RIGHT, this.state.universe[this.universeIdChoosed - 1]);
-        break;
-      case 'select_left':
-        console.log(this.state.universe[this.universeIdChoosed - 1]);
-        event.side.updateAddress(event.column, event.line, Direction.LEFT, this.state.universe[this.universeIdChoosed - 1]);
+        event.side.updateAddress(event.start, event.end, this.state.universe[this.universeIdChoosed - 1]);
         break;
       case 'turn_off':
-        event.side.turnOffCell(event.column, event.line);
+        event.side.turnOffCell(event.start);
         break;
       default:
         console.error('Tools not implemented');

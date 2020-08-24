@@ -4,6 +4,7 @@ import { timer } from 'rxjs';
 import { Side } from 'src/app/core/state/side';
 import { StateService } from 'src/app/core/state/state.service';
 import { Dimension } from 'src/app/core/state/models/frontage';
+import { Position } from 'src/app/core/state/models/frontage';
 
 @Component({
   selector: 'app-frontage-canvas',
@@ -23,6 +24,8 @@ export class FrontageCanvasComponent implements OnInit {
   private gutter = 50;
 
   @Output() clickCell = new EventEmitter();
+
+  private cellStart: Position;
 
   constructor(public state: StateService) { }
 
@@ -109,13 +112,36 @@ export class FrontageCanvasComponent implements OnInit {
     }
   }
 
-  updateState(event): void {
+  calculatePosition(event: MouseEvent): Position {
     const rect = this.canvas.nativeElement.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    const c = Math.floor((x - this.gutter) / this.areaCell.width);
-    const l = Math.floor((y - this.gutter) / this.areaCell.height);
-    this.clickCell.emit({ column: c, line: l, side: this.side });
+    const column = Math.floor((x - this.gutter) / this.areaCell.width);
+    const line = Math.floor((y - this.gutter) / this.areaCell.height);
+
+    return { column, line }
   }
+
+  updateState(event: MouseEvent): void {
+    const { column, line } = this.calculatePosition(event)
+    this.clickCell.emit({ column, line, side: this.side });
+  }
+
+  start(event: MouseEvent) {
+    const { column, line } = this.calculatePosition(event);
+    this.cellStart = {
+      column,
+      line
+    }
+  }
+
+  stop(event: MouseEvent) {
+    const { column, line } = this.calculatePosition(event);
+    console.log(this.cellStart);
+    console.log(column, line)
+    this.clickCell.emit({ start: this.cellStart, end: { column, line }, side: this.side });
+
+  }
+
 }

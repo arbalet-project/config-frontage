@@ -13,3 +13,8 @@ export enum Direction {
   LEFT,
   RIGHT
 }
+
+export interface Position {
+  column: number;
+  line: number;
+}

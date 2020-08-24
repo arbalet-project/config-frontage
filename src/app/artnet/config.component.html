@@ -14,11 +14,8 @@
   </button>
 
   <mat-button-toggle-group #tools="matButtonToggleGroup">
-    <mat-button-toggle value="select_left" [disabled]="universeIdChoosed < 0">
-      <mat-icon> keyboard_arrow_left </mat-icon>
-    </mat-button-toggle>
-    <mat-button-toggle value="select_right" [disabled]="universeIdChoosed < 0">
-      <mat-icon> keyboard_arrow_right </mat-icon>
+    <mat-button-toggle value="select" [disabled]="universeIdChoosed < 0">
+      <mat-icon> select_all </mat-icon>
     </mat-button-toggle>
     <mat-button-toggle value="turn_off">
       <mat-icon>block</mat-icon>

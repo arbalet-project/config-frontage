@@ -1,7 +1,6 @@
-import { Cell, Direction } from './models/frontage';
+import { Cell, Direction, Position } from './models/frontage';
 import { Universe } from './models/universe';
 import { v4 } from 'uuid';
-
 export class Side {
   public frontage: Array<Array<Cell>>;
   public uuid: string;
@@ -22,34 +21,40 @@ export class Side {
     this.uuid = v4();
   }
 
-  public turnOffCell(column: number, line: number): void {
-    this.frontage[line][column].disabled = !this.frontage[line][column].disabled;
-    this.frontage[line][column].universeId = -1;
-    this.frontage[line][column].address = -1;
+  public turnOffCell(position: Position): void {
+    this.frontage[position.line][position.column].disabled = !this.frontage[position.line][position.column].disabled;
   }
 
-  public updateAddress(column: number, line: number, dir: Direction, universe: Universe): void {
+  public updateAddress(start: Position, end: Position, universe: Universe): void {
     if (universe === undefined) { return; }
+    console.log("test");
+    if (start.line == end.line) {
+      let step = start.column < end.column ? 1 : -1;
+      const cond = start.column < end.column
+        ? (i) => { return i <= end.column; }
+        : (i) => { return i >= end.column; }
 
-    switch (dir) {
-      case Direction.LEFT:
-        for (let i = column; i >= 0; i--) {
-          if (!this.frontage[line][i].disabled) {
-            this.frontage[line][i].address = universe.getNewAddress(this.uuid);
-            this.frontage[line][i].universeId = universe.id;
-          }
+      for (let i = start.column; cond(i); i = i + step) {
+        console.log("test");
+        if (!this.frontage[start.line][i].disabled) {
+          console.log("test");
+
+          this.frontage[start.line][i].address = universe.getNewAddress(this.uuid);
+          this.frontage[start.line][i].universeId = universe.id;
         }
-        break;
-      case Direction.RIGHT:
-        for (let i = column; i < this.frontage[line].length; i++) {
-          if (!this.frontage[line][i].disabled) {
-            this.frontage[line][i].address = universe.getNewAddress(this.uuid);
-            this.frontage[line][i].universeId = universe.id;
-          }
+      }
+    } else if (start.column == end.column) {
+      let step = start.line < end.line ? 1 : -1;
+      const cond = start.line < end.line
+        ? (i) => { return i <= end.line; }
+        : (i) => { return i >= end.line; }
+
+      for (let i = start.line; cond(i); i = i + step) {
+        if (!this.frontage[i][start.column].disabled) {
+          this.frontage[i][start.column].address = universe.getNewAddress(this.uuid);
+          this.frontage[i][start.column].universeId = universe.id;
         }
-        break;
-      default:
-        console.error("Wrong direction provided (or not implemented)");
+      }
     }
   }
 }
