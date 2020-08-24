@@ -20,6 +20,7 @@ import { UniverseFormComponent } from './artnet/universe-form/universe-form.comp
 import { HttpClientModule } from '@angular/common/http';
 import { FrontageCanvasComponent } from './artnet/frontage-canvas/frontage-canvas.component';
 import { SideFormComponent } from './artnet/side-form/side-form.component';
+import { GenerateJsonDialogComponent } from './components/generate-json-dialog/generate-json-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SideFormComponent } from './artnet/side-form/side-form.component';
     UniverseFormComponent,
     InitComponent,
     FrontageCanvasComponent,
-    SideFormComponent
+    SideFormComponent,
+    GenerateJsonDialogComponent
   ],
   imports: [
     BrowserModule,

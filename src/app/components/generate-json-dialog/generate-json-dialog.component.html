@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Confirmation for download JSON file</h1>
+<div mat-dialog-content>
+  <p>Do you want to download json files ?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button color="accent">
+    <a
+      title="Download JSON"
+      [href]="uri"
+      download="download.json"
+      (click)="dialogRef.close()"
+    >
+      Télécharger le fichier json
+    </a>
+  </button>
+  <button mat-button mat-dialog-close>No Thanks</button>
+</div>

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { GenerateJsonDialogComponent } from './components/generate-json-dialog/generate-json-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -6,8 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  public constructor(public dialog: MatDialog) { }
 
   public saveConfig() {
-
+    this.dialog.open(GenerateJsonDialogComponent, {
+      width: '350px'
+    });
   }
 }
