@@ -41,7 +41,6 @@ export class ConfigComponent {
   }
 
   updateCell(event: { start: Position, end: Position, side: Side }): void {
-    console.log(event);
     switch (this.tools.value) {
       case 'select':
         // TODO : Potential Bug here with the universeId (because not sure it's the same if we delete some id)
@@ -57,6 +56,5 @@ export class ConfigComponent {
 
   changeUniverse(id: number) {
     this.universeIdChoosed = id;
-    console.log(id);
   }
 }

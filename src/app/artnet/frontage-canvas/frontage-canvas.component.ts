@@ -138,8 +138,6 @@ export class FrontageCanvasComponent implements OnInit {
 
   stop(event: MouseEvent) {
     const { column, line } = this.calculatePosition(event);
-    console.log(this.cellStart);
-    console.log(column, line)
     this.clickCell.emit({ start: this.cellStart, end: { column, line }, side: this.side });
 
   }

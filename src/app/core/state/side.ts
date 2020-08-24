@@ -27,7 +27,6 @@ export class Side {
 
   public updateAddress(start: Position, end: Position, universe: Universe): void {
     if (universe === undefined) { return; }
-    console.log("test");
     if (start.line == end.line) {
       let step = start.column < end.column ? 1 : -1;
       const cond = start.column < end.column
@@ -35,10 +34,7 @@ export class Side {
         : (i) => { return i >= end.column; }
 
       for (let i = start.column; cond(i); i = i + step) {
-        console.log("test");
         if (!this.frontage[start.line][i].disabled) {
-          console.log("test");
-
           this.frontage[start.line][i].address = universe.getNewAddress(this.uuid);
           this.frontage[start.line][i].universeId = universe.id;
         }
