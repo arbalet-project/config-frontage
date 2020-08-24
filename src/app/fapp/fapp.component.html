@@ -5,7 +5,7 @@
         <mat-card-title> Frontage Applications (Listing) </mat-card-title>
       </mat-card-header>
       <mat-card-content fxLayout="column">
-        <div *ngFor="let f of app.frontageApp | keyvalue">
+        <div *ngFor="let f of state.frontageApp | keyvalue">
           <mat-checkbox [checked]="f.value" (change)="update(f.key)">{{
             f.key
           }}</mat-checkbox>

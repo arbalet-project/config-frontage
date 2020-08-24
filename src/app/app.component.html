@@ -3,15 +3,15 @@
     <div fxLayout="column">
       <button mat-button>
         <mat-icon>add</mat-icon>
-        <span>Nouvelle configuration</span>
+        <a>Nouvelle configuration</a>
       </button>
-      <button mat-button>
+      <button mat-button (click)="saveConfig()">
         <mat-icon>save</mat-icon>
         <span>Enregistrer la configuration</span>
       </button>
       <button mat-button>
         <mat-icon>import_export</mat-icon>
-        <span>Importer configuration</span>
+        <a>Importer configuration</a>
       </button>
     </div>
   </mat-sidenav>

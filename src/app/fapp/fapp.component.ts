@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from '../core/app.service';
+import { StateService } from '../core/state/state.service';
 
 @Component({
   selector: 'app-fapp',
@@ -8,11 +8,11 @@ import { AppService } from '../core/app.service';
 })
 export class FappComponent implements OnInit {
 
-  constructor(public app: AppService) { }
+  constructor(public state: StateService) { }
 
   ngOnInit(): void {
   }
   update(name: string): void {
-    this.app.updateStatusFApp(name);
+    this.state.updateStatusFApp(name);
   }
 }
