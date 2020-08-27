@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
 import { StateService } from './state/state.service'
+import { Side } from './state/side';
+import { ColorMode } from './state/models/universe';
+
+export interface mapping {
+  dmx: number;
+  universe: number;
+  colorMode: string;
+}
 
 export interface JSONInterface {
   apps: Array<string>,
@@ -7,7 +15,7 @@ export interface JSONInterface {
     id: string,
     name: string
   },
-  mapping: {},
+  mappings: Array<Array<Array<mapping>>>,
   sunrise: {}
 }
 
@@ -25,7 +33,7 @@ export class GenerateJsonService {
         name: this.state.name,
         id: this.state.id
       },
-      mapping: {},
+      mappings: [],
       sunrise: {}
     }
 
@@ -37,6 +45,26 @@ export class GenerateJsonService {
     })
 
     // Fill Mapping
+    this.state.sides.forEach(side => {
+      json.mappings = new Array(side.frontage.length);
+      for (let i = 0; i < side.frontage.length; i++) {
+        json.mappings[i] = new Array(side.frontage[i].length);
+        for (let j = 0; j < side.frontage[i].length; j++) {
+          json.mappings[i][j] = new Array();
+          let uId = side.frontage[i][j].universeId;
+
+          if (uId < 0) continue;
+
+          json.mappings[i][j].push({
+            dmx: side.frontage[i][j].address,
+            universe: uId,
+            colorMode: this.state.universe[uId - 1].color == ColorMode.RGB ? "rgb" : "grb"
+          })
+        }
+      }
+    })
+
+    // Fill sunrise, sunset
     console.log("TODO");
 
     return json;
