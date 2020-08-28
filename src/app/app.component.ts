@@ -10,7 +10,7 @@ import { GenerateJsonDialogComponent } from './components/generate-json-dialog/g
 export class AppComponent {
   public constructor(public dialog: MatDialog) { }
 
-  public saveConfig() {
+  public saveConfig(): void {
     this.dialog.open(GenerateJsonDialogComponent, {
       width: '350px'
     });

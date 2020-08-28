@@ -27,11 +27,11 @@ export class Side {
 
   public updateAddress(start: Position, end: Position, universe: Universe): void {
     if (universe === undefined) { return; }
-    if (start.line == end.line) {
-      let step = start.column < end.column ? 1 : -1;
+    if (start.line === end.line) {
+      const step = start.column < end.column ? 1 : -1;
       const cond = start.column < end.column
-        ? (i) => { return i <= end.column; }
-        : (i) => { return i >= end.column; }
+        ? (i) => i <= end.column
+        : (i) => i >= end.column;
 
       for (let i = start.column; cond(i); i = i + step) {
         if (!this.frontage[start.line][i].disabled) {
@@ -39,11 +39,11 @@ export class Side {
           this.frontage[start.line][i].universeId = universe.id;
         }
       }
-    } else if (start.column == end.column) {
-      let step = start.line < end.line ? 1 : -1;
+    } else if (start.column === end.column) {
+      const step = start.line < end.line ? 1 : -1;
       const cond = start.line < end.line
-        ? (i) => { return i <= end.line; }
-        : (i) => { return i >= end.line; }
+        ? (i) => i <= end.line
+        : (i) => i >= end.line;
 
       for (let i = start.line; cond(i); i = i + step) {
         if (!this.frontage[i][start.column].disabled) {

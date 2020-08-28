@@ -96,7 +96,7 @@ export class FrontageCanvasComponent implements OnInit {
     }
   }
 
-  public drawAddress() {
+  public drawAddress(): void {
     for (let i = 0; i < this.state.dimension.height; i++) {
       for (let j = 0; j < this.state.dimension.width; j++) {
         if (this.side.frontage[i][j].address >= 0) {
@@ -120,23 +120,23 @@ export class FrontageCanvasComponent implements OnInit {
     const column = Math.floor((x - this.gutter) / this.areaCell.width);
     const line = Math.floor((y - this.gutter) / this.areaCell.height);
 
-    return { column, line }
+    return { column, line };
   }
 
   updateState(event: MouseEvent): void {
-    const { column, line } = this.calculatePosition(event)
+    const { column, line } = this.calculatePosition(event);
     this.clickCell.emit({ column, line, side: this.side });
   }
 
-  start(event: MouseEvent) {
+  start(event: MouseEvent): void {
     const { column, line } = this.calculatePosition(event);
     this.cellStart = {
       column,
       line
-    }
+    };
   }
 
-  stop(event: MouseEvent) {
+  stop(event: MouseEvent): void {
     const { column, line } = this.calculatePosition(event);
     this.clickCell.emit({ start: this.cellStart, end: { column, line }, side: this.side });
 

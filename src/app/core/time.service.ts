@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { interval } from 'rxjs';
+import { StateService } from './state/state.service';
+import { Sunrise } from './state/models/sunrise';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -7,24 +11,31 @@ import { HttpClient } from '@angular/common/http';
 export class TimeService {
   private apiUrl = 'https://api.sunrise-sunset.org/json';
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, private state: StateService, private snackBar: MatSnackBar) { }
 
   private getDay(longitude: number, latitude: number, date: string): void {
-    this.http.get(`${this.apiUrl}?lat=${latitude}&lng=${longitude}&formatted=0&date=${date}`).subscribe((result) => {
-      console.log(result);
+    this.http.get<Sunrise>(`${this.apiUrl}?lat=${latitude}&lng=${longitude}&formatted=0&date=${date}`).subscribe((result) => {
+      this.state.sunriseTime.set(date, result);
     });
   }
 
   public getAllTimes(longitude: number, latitude: number, years: number): void {
     const date = new Date();
 
-    while (date.getFullYear() - new Date().getFullYear() <= years) {
-      setTimeout(() => {
+    const sub = interval(50).subscribe(
+      (data) => {
+        if (date.getFullYear() - new Date().getFullYear() >= years) {
+          sub.unsubscribe();
+        }
         this.getDay(longitude, latitude, date.toISOString().substring(0, 10));
-       // console.log(result);
-      }, 500);
-      // Add one day
-      date.setDate(date.getDate() + 1);
-    }
+        date.setDate(date.getDate() + 1);
+      },
+      console.error,
+      () => {
+        this.snackBar.open('Finish imports of all informations', 'Undo', {
+          duration: 3000,
+        });
+      }
+    );
   }
 }

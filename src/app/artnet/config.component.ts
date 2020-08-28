@@ -16,8 +16,8 @@ import { Position } from 'src/app/core/state/models/frontage';
 })
 export class ConfigComponent {
   @ViewChild('tools') tools: MatButtonToggleGroup;
-  public universeIdChoosed: number = -1;
-  public message = "You need to create an universe and choose one universe before to address some frontage. You can disable some frontage with the tools";
+  public universeIdChoosed = -1;
+  public message = 'You need to create an universe and choose one universe before to address some frontage. You can disable some frontage with the tools';
   constructor(public state: StateService, public dialog: MatDialog) { }
 
   addUniverse(): void {
@@ -54,7 +54,7 @@ export class ConfigComponent {
     }
   }
 
-  changeUniverse(id: number) {
+  changeUniverse(id: number): void {
     this.universeIdChoosed = id;
   }
 }

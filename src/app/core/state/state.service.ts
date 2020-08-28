@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { Dimension } from './models/frontage';
 import { Side } from './side';
 import { Universe, ColorMode, FormResponse } from './models/universe';
+import { Sunrise } from './models/sunrise';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StateService {
   /**
@@ -30,8 +31,8 @@ export class StateService {
    */
   public id: string;
   /**
-    * Boolean to know if the app is initialized (form to this dimension filled)
-    */
+   * Boolean to know if the app is initialized (form to this dimension filled)
+   */
   public initiliazed = false;
   /**
    * Listing of all frontage application.
@@ -45,17 +46,26 @@ export class StateService {
     ['SweepAsync', true],
     ['Tetris', true],
     ['Snake', true],
-    ['Drawing', true]
+    ['Drawing', true],
   ]);
 
-  constructor() { }
+  /**
+   * Lists contains all result by the sunrise api.
+   */
+  public sunriseTime = new Map<string, Sunrise>();
+
+  constructor() {}
 
   public addSide(name: string): void {
-    this.sides.push(new Side(this.dimension.width, this.dimension.height, name));
+    this.sides.push(
+      new Side(this.dimension.width, this.dimension.height, name)
+    );
   }
 
   public getAllColorMode(): Array<string> {
-    return Object.keys(ColorMode).filter(k => typeof ColorMode[k as any] === 'number').map(v => v.toLowerCase());
+    return Object.keys(ColorMode)
+      .filter((k) => typeof ColorMode[k as any] === 'number')
+      .map((v) => v.toLowerCase());
   }
 
   public addUniverse(response: FormResponse): void {
@@ -75,7 +85,7 @@ export class StateService {
       default:
         console.error('an error occured, wrong choice for the color mode.');
     }
-    this.sides.forEach(side => univ.registerSide(side.uuid));
+    this.sides.forEach((side) => univ.registerSide(side.uuid));
 
     this.universe.push(univ);
   }
@@ -90,7 +100,7 @@ export class StateService {
     if (this.frontageApp.has(name)) {
       this.frontageApp.set(name, !this.frontageApp.get(name));
     } else {
-      throw Error("The name of the frontage app is not known")
+      throw Error('The name of the frontage app is not known');
     }
   }
 }

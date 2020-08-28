@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
-import { StateService } from './state/state.service'
+import { StateService } from './state/state.service';
 import { Side } from './state/side';
 import { ColorMode } from './state/models/universe';
 
-export interface mapping {
+export interface Mapping {
   dmx: number;
   universe: number;
   colorMode: string;
 }
 
 export interface JSONInterface {
-  apps: Array<string>,
+  apps: Array<string>;
   general: {
     id: string,
     name: string
-  },
-  mappings: Array<Array<Array<mapping>>>,
-  sunrise: {}
+  };
+  mappings: Array<Array<Array<Mapping>>>;
+  sunrise: {};
 }
 
 @Injectable({
@@ -27,7 +27,7 @@ export class GenerateJsonService {
   constructor(public state: StateService) { }
 
   public generate(): JSONInterface {
-    let json: JSONInterface = {
+    const json: JSONInterface = {
       apps: [],
       general: {
         name: this.state.name,
@@ -35,14 +35,14 @@ export class GenerateJsonService {
       },
       mappings: [],
       sunrise: {}
-    }
+    };
 
     // Fill apps
     this.state.frontageApp.forEach((value, key) => {
       if (value) {
         json.apps.push(key);
       }
-    })
+    });
 
     // Fill Mapping
     this.state.sides.forEach(side => {
@@ -51,21 +51,21 @@ export class GenerateJsonService {
         json.mappings[i] = new Array(side.frontage[i].length);
         for (let j = 0; j < side.frontage[i].length; j++) {
           json.mappings[i][j] = new Array();
-          let uId = side.frontage[i][j].universeId;
+          const uId = side.frontage[i][j].universeId;
 
-          if (uId < 0) continue;
+          if (uId < 0) { continue; }
 
           json.mappings[i][j].push({
             dmx: side.frontage[i][j].address,
             universe: uId,
-            colorMode: this.state.universe[uId - 1].color == ColorMode.RGB ? "rgb" : "grb"
-          })
+            colorMode: this.state.universe[uId - 1].color === ColorMode.RGB ? 'rgb' : 'grb'
+          });
         }
       }
-    })
+    });
 
     // Fill sunrise, sunset
-    console.log("TODO");
+    console.log('TODO');
 
     return json;
   }
