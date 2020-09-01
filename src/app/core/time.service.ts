@@ -22,19 +22,16 @@ export class TimeService {
   public getAllTimes(longitude: number, latitude: number, years: number): void {
     const date = new Date();
 
-    const sub = interval(50).subscribe(
-      (data) => {
+    const sub = interval(200).subscribe(
+      () => {
         if (date.getFullYear() - new Date().getFullYear() >= years) {
           sub.unsubscribe();
+          this.snackBar.open('Finish imports of all informations', 'Ok', {
+            duration: 10000,
+          });
         }
         this.getDay(longitude, latitude, date.toISOString().substring(0, 10));
         date.setDate(date.getDate() + 1);
-      },
-      console.error,
-      () => {
-        this.snackBar.open('Finish imports of all informations', 'Undo', {
-          duration: 3000,
-        });
       }
     );
   }
