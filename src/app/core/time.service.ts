@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { interval } from 'rxjs';
 import { StateService } from './state/state.service';
-import { Sunrise } from './state/models/sunrise';
+import { SunriseResponse } from './state/models/sunrise';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
@@ -14,8 +14,9 @@ export class TimeService {
   constructor(public http: HttpClient, private state: StateService, private snackBar: MatSnackBar) { }
 
   private getDay(longitude: number, latitude: number, date: string): void {
-    this.http.get<Sunrise>(`${this.apiUrl}?lat=${latitude}&lng=${longitude}&formatted=0&date=${date}`).subscribe((result) => {
-      this.state.sunriseTime.set(date, result);
+    this.http.get<SunriseResponse>(`${this.apiUrl}?lat=${latitude}&lng=${longitude}&formatted=0&date=${date}`).subscribe(({ results }) => {
+      this.state.sunriseTime.set(date, { sunrise: results.sunrise, sunset: results.sunset });
+      console.log(this.state.sunriseTime)
     });
   }
 
