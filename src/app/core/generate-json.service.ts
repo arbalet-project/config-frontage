@@ -67,7 +67,7 @@ export class GenerateJsonService {
     // Fill sunrise, sunset
     this.state.sunriseTime.forEach((value, key) => {
       json.sunrise[key] = value;
-    })
+    });
 
     return json;
   }

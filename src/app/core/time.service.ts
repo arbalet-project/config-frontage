@@ -16,7 +16,6 @@ export class TimeService {
   private getDay(longitude: number, latitude: number, date: string): void {
     this.http.get<SunriseResponse>(`${this.apiUrl}?lat=${latitude}&lng=${longitude}&formatted=0&date=${date}`).subscribe(({ results }) => {
       this.state.sunriseTime.set(date, { sunrise: results.sunrise, sunset: results.sunset });
-      console.log(this.state.sunriseTime)
     });
   }
 

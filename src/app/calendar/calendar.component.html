@@ -3,7 +3,11 @@
     <form [formGroup]="geographyForm" (ngSubmit)="updateSun()">
       <mat-form-field appearance="fill">
         <mat-label>Longitude</mat-label>
-        <input matInput type="number" [formControl]="geographyForm.controls.longitude" />
+        <input
+          matInput
+          type="number"
+          [formControl]="geographyForm.controls.longitude"
+        />
         <!-- <mat-error *ngIf="creationForm.errors.invalid">Min size: 10px</mat-error> -->
       </mat-form-field>
       <br />
@@ -12,8 +16,17 @@
         <input
           matInput
           type="number"
-          placeholder="Ex. 12"
           [formControl]="geographyForm.controls.latitude"
+        />
+        <!-- <mat-error *ngIf="creationForm.errors.invalid">Min size: 10px</mat-error> -->
+      </mat-form-field>
+      <br/>
+      <mat-form-field appearance="fill">
+        <mat-label>Years (Number to extract)</mat-label>
+        <input
+          matInput
+          type="number"
+          [formControl]="geographyForm.controls.years"
         />
         <!-- <mat-error *ngIf="creationForm.errors.invalid">Min size: 10px</mat-error> -->
       </mat-form-field>

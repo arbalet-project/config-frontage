@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TimeService } from 'src/app/core/time.service';
 @Component({
   selector: 'app-calendar',
@@ -12,7 +12,8 @@ export class CalendarComponent {
   constructor(public fb: FormBuilder, public timeApi: TimeService) {
     this.geographyForm = this.fb.group({
       longitude: new FormControl(0),
-      latitude: new FormControl(0)
+      latitude: new FormControl(0),
+      years: new FormControl(1, [Validators.min(1), Validators.max(10)])
     });
   }
 

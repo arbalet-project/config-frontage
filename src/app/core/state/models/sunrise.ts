@@ -10,7 +10,7 @@ export interface SunriseResponse {
     nautical_twilight_end: string;
     astronomical_twilight_begin: string;
     astronomical_twilight_end: string;
-  }
+  };
 }
 
 export interface Sunrise {
