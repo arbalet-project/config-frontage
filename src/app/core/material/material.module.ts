@@ -17,6 +17,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {TextFieldModule} from '@angular/cdk/text-field';
 
 const materialComponents = [
   MatFormFieldModule,
@@ -35,7 +36,8 @@ const materialComponents = [
   MatCheckboxModule,
   MatCardModule,
   MatTabsModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  TextFieldModule
 ];
 
 

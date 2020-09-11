@@ -7,13 +7,15 @@ export interface Mapping {
   dmx: number;
   universe: number;
   colorMode: string;
+  disabled: boolean;
 }
 
 export interface JSONInterface {
   apps: Array<string>;
   general: {
     id: string,
-    name: string
+    name: string;
+    description: string
   };
   mappings: Array<Array<Array<Mapping>>>;
   sunrise: {};
@@ -31,7 +33,8 @@ export class GenerateJsonService {
       apps: [],
       general: {
         name: this.state.name,
-        id: this.state.id
+        id: this.state.id,
+        description: this.state.description
       },
       mappings: [],
       sunrise: {}
@@ -58,7 +61,8 @@ export class GenerateJsonService {
           json.mappings[i][j].push({
             dmx: side.frontage[i][j].address,
             universe: uId,
-            colorMode: this.state.universe[uId - 1].color === ColorMode.RGB ? 'rgb' : 'grb'
+            colorMode: this.state.universe[uId - 1].color === ColorMode.RGB ? 'rgb' : 'grb',
+            disabled : side.frontage[i][j].disabled
           });
         }
       }

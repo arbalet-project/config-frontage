@@ -30,6 +30,11 @@ export class StateService {
    * @description Private name of the frontage.
    */
   public id: string;
+
+  /**
+   * @description Description of the frontage.
+   */
+  public description: string;
   /**
    * Boolean to know if the app is initialized (form to this dimension filled)
    */
@@ -54,7 +59,7 @@ export class StateService {
    */
   public sunriseTime = new Map<string, Sunrise>();
 
-  constructor() {}
+  constructor() { }
 
   public addSide(name: string): void {
     this.sides.push(

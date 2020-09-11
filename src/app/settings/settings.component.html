@@ -13,6 +13,19 @@
         <!-- <mat-error *ngIf="creationForm.errors.invalid">Min size: 10px</mat-error> -->
       </mat-form-field>
       <br />
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="5"
+          [formControl]="settingsForm.controls.description"
+        ></textarea>
+        <!-- <mat-error *ngIf="creationForm.errors.invalid">Min size: 10px</mat-error> -->
+      </mat-form-field>
+      <br />
       <div id="submit">
         <button
           mat-flat-button
