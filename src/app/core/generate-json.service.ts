@@ -54,15 +54,24 @@ export class GenerateJsonService {
         json.mappings[i] = new Array(side.frontage[i].length);
         for (let j = 0; j < side.frontage[i].length; j++) {
           json.mappings[i][j] = new Array();
+          const disabled = side.frontage[i][j].disabled;
           const uId = side.frontage[i][j].universeId;
 
-          if (uId < 0) { continue; }
+          if (disabled) {
+            json.mappings[i][j].push({
+            dmx: -1,
+            universe: -1,
+            colorMode:'rgb',
+            disabled : true
+          });
+          continue;
+        }
 
           json.mappings[i][j].push({
             dmx: side.frontage[i][j].address,
             universe: uId,
             colorMode: this.state.universe[uId - 1].color === ColorMode.RGB ? 'rgb' : 'grb',
-            disabled : side.frontage[i][j].disabled
+            disabled : disabled
           });
         }
       }
