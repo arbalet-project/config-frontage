@@ -54,8 +54,13 @@ export class GenerateJsonService {
         json.mappings[i] = new Array(side.frontage[i].length);
         for (let j = 0; j < side.frontage[i].length; j++) {
           json.mappings[i][j] = new Array();
+
           const disabled = side.frontage[i][j].disabled;
           const uId = side.frontage[i][j].universeId;
+
+          if(uId == -1) {
+            continue;
+          }
 
           if (disabled) {
             json.mappings[i][j].push({
